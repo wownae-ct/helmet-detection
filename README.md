@@ -4,6 +4,23 @@ YOLOv8 기반으로 산업현장의 **안전모 미착용·쓰러짐**을 탐지
 
 > **2026-06 프로젝트의 정리본입니다.** 데이터셋, 모델 가중치(`.pt`), MLflow·Airflow DB는 포함하지 않았습니다(원래 저장소는 약 927MB였고, 이 저장소는 코드·문서·실험 증거만 담아 약 8MB입니다). 데이터에는 외부 공개 데이터(roboflow, kaggle)와 팀 라벨링 데이터가 섞여 있어 올리지 않았습니다. **그래서 이 저장소만으로 학습이나 추론을 그대로 재현할 수는 없습니다.** 전체 학습 이력과 가중치는 비공개 아카이브에 있습니다.
 
+## 결과 한눈에
+
+![라운드별 지표](docs/charts/round_comparison_1_10.png)
+
+*라운드 1~10의 전체 지표(왼쪽)와 클래스별 test mAP50(오른쪽). round3은 fallen 탐지에 실패했고(0), round6·7에서 최고점에 도달했습니다.*
+
+![MLflow 실험 목록](docs/images/mlflow_runs.png)
+
+*MLflow Runs 화면(18개 run). 아래 표의 round4~7 test mAP50(0.863 / 0.866 / 0.965 / 0.957)이 이 화면의 값(0.86329… / 0.86613… / 0.96453… / 0.95737…)과 같습니다. `base_model` 열의 경로는 원본 학습 환경의 경로입니다.*
+
+<p>
+  <img src="experiments/runs2/round6/confusion_matrix_normalized.png" width="360" alt="round6 정규화 혼동행렬" />
+  <img src="experiments/runs2/round7/confusion_matrix_normalized.png" width="360" alt="round7 정규화 혼동행렬" />
+</p>
+
+*round6(왼쪽)과 round7(오른쪽)의 정규화 혼동행렬입니다. Ultralytics가 학습 종료 시 저장한 것으로, 아래 표의 test mAP50과 평가 셋이 다를 수 있어서 두 순위가 일치하지 않을 수 있습니다(예: fallen 재현율은 이 그림에서 round7이 높지만 test mAP50은 round6이 높습니다).*
+
 ## 이 저장소에 있는 것 / 없는 것
 
 | 있음 | 없음 |
@@ -103,6 +120,7 @@ experiments/
   results/, plots/  라운드 비교 그래프
 notebooks/          round1~4 학습 노트북(출력 비움), OpenCV 실습
 docs/               과정 문서, 라운드 비교 차트
+docs/images/        MLflow 실험 목록 화면
 windows_demo/       Windows 추론 데모 코드
 ```
 
