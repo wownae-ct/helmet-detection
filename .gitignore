@@ -1,0 +1,20 @@
+# 비밀·환경 파일
+.env
+*.key
+*.pem
+
+# 대용량·재생성 가능 파일 (원본 학습 이력은 비공개 아카이브에 있습니다)
+*.pt
+*.db
+mlruns/
+mlflow/mlruns/
+airflow/logs/
+data/
+yolo_env/
+demo_outputs/
+_archive/
+
+# 파이썬
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
